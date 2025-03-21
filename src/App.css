@@ -11,17 +11,17 @@ html {
   flex-direction: column;
 }
 .content {
-  display:flex;
+  display: flex;
   flex-direction: column;
   flex-grow: 1;
   max-width: 1200px;
   box-sizing: border-box;
 }
 .app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
 /* Header */
 .logo {
@@ -71,7 +71,6 @@ footer {
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  
 }
 
 .footer-container hr {
@@ -173,8 +172,8 @@ footer {
 }
 
 .mainPage {
-    position: relative;
-    min-height: calc(100vh - 100px); 
+  position: relative;
+  min-height: calc(100vh - 100px);
 }
 .learnMoreButton {
   position: absolute;
@@ -190,7 +189,6 @@ footer {
   min-height: 30px;
   border: none;
   max-width: 180px;
-
 }
 
 .mainBodyPic {
@@ -292,8 +290,6 @@ footer {
   margin-top: 20px;
   height: 130px;
 }
-
-
 
 .menu-item {
   padding: 5px;
@@ -443,7 +439,6 @@ footer {
   width: 80%;
   max-width: 500px;
   background: white;
-
 }
 
 .signup-form {
@@ -477,7 +472,37 @@ footer {
 }
 
 .accountDetails {
-  margin-left: 30px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 275px;
+  width: 275px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.accountDetails h2 p {
+  margin: 2px 0; 
+  line-height: 1;
+}
+
+.outer-res-container {
+  margin: auto;
+  display: grid;
+  place-items: center;
+  height: auto;
+  width: 80vw;
+  padding: 50px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .reservations-container {
@@ -486,16 +511,42 @@ footer {
   gap: 16px;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .reservation-card {
+    width: 100%;
+  }
+}
+
+.view-av-animals {
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.save-new-dates {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
 }
 
 .reservation-card {
-  margin: 20px;
-  border: black 2px solid;
+  margin: 10px;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding-left: 10px;
-  width: 250px;
+  width: 50%;
   padding-bottom: 10px;
   text-align: center;
+  max-width: 500px; 
+  min-width: 280px;
+  box-sizing: border-box;
 }
 
 button:hover {
@@ -511,16 +562,71 @@ button:hover {
 
 .animals-card {
   margin: 20px;
-  border: black 2px solid;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding-left: 10px;
   text-align: left;
   width: 250px;
   padding-bottom: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.animal-details-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  text-align: right;
 }
 
-.animal-details-page {
-  margin: 30px;
+.animal-details-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80%;  
+  gap: 10%;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  font-size: 1.7vw;
+}
+
+.animal-image {
+  width: 50%;  
+  height: auto;
+}
+
+.animal-details {
+  display: flex;
+  width: 45%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.dates-form {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.error-message, .success-message {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.animals-card:hover {
+  transform: scale(1.05);
+}
+
+.animals-card:focus {
+  outline: 3px solid rgba(0, 0, 0, 0.5);
+  outline-offset: 2px;
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3),
+    0 0 12px 3px rgba(141, 138, 144, 0.9);
 }
 
 .edit-reservations-container {
@@ -535,4 +641,63 @@ button:hover {
 
 .dates-form button {
   margin: 5px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2em;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.host-animals {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.host-animals:hover {
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save-res {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.save-res:hover {
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
 }

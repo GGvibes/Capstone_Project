@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import Modal from "./Modal";
 
 export default function EditReservation() {
   const { id } = useParams();
   const [reservation, setReservation] = useState(null);
   const [error, setError] = useState(null);
   const [animal, setAnimal] = useState(null);
-  const [showDateForm, setShowDateForm] = useState(false);
   const [newStartDate, setNewStartDate] = useState("");
   const [newEndDate, setNewEndDate] = useState("");
+  const [showModal, setShowModal] = useState(null);
+
   const navigate = useNavigate();
 
-  const editDatesClick = () => {
-    setShowDateForm((prevState) => !prevState);
-  };
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
 
   useEffect(() => {
     async function fetchReservation() {
@@ -64,7 +66,24 @@ export default function EditReservation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("save button clicked!");
+    
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in 'YYYY-MM-DD' format
+
+  if (new Date(newStartDate) < new Date(today)) {
+    setError("Start date must be in the future.");
+    return;
+  }
+
+  if (new Date(newEndDate) < new Date(today)) {
+    setError("End date must be in the future.");
+    return;
+  }
+
+    if (new Date(newStartDate) > new Date(newEndDate)) {
+      setError("Start date must be before the end date.");
+      return;
+    }
+
     const token = localStorage.getItem("token");
     const updatedDates = {
       start_date: new Date(newStartDate).toISOString().split("T")[0],
@@ -89,6 +108,7 @@ export default function EditReservation() {
       const updatedReservation = await response.json();
       setReservation(updatedReservation);
       alert("Reservation updated successfully!");
+      closeModal();
     } catch (err) {
       console.error("Error updating reservation:", err);
     }
@@ -148,13 +168,14 @@ export default function EditReservation() {
         </p>
       </div>
       <button
-        onClick={editDatesClick}
+        onClick={openModal}
         style={{ margin: "5px", padding: "5px" }}
       >
         Edit Dates
       </button>
-      {showDateForm && (
+      <Modal show={showModal} handleClose={closeModal}>
         <form className="dates-form">
+          <h4>Set New Reservation Dates:</h4>
           <label>
             Start Date:
             <input
@@ -173,11 +194,11 @@ export default function EditReservation() {
             />
           </label>
           <br />
-          <button onClick={handleSubmit} type="submit">
+          <button style={{marginTop: "15px"}} className="save-new-dates" onClick={handleSubmit} type="submit">
             Save
           </button>
         </form>
-      )}
+      </Modal>
       <div>
         <button
           onClick={() => handleCancelClick(reservation.id)}

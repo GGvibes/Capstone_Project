@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { format } from "date-fns";
 
 export default function AccountPage({ token }) {
@@ -32,7 +32,7 @@ export default function AccountPage({ token }) {
         const result = await response.json();
         const userId = result.id;
         setAccountData(result);
-        console.log(result)
+        console.log(result);
 
         const reservationsResponse = await fetch(
           `http://localhost:5000/api/reservations/lookupbyuser/${userId}`,
@@ -94,53 +94,56 @@ export default function AccountPage({ token }) {
         <p>Last Name: {accountData.lastname}</p>
         <p>Email: {accountData.email}</p>
         <p>Address: {accountData.address}</p>
-        <div>
-          <h3 style={{ marginTop: "50px" }}>Reservations:</h3>
+      </div>
+      <div className="outer-res-container">
+        <h3>Reservations:</h3>
 
-          {reservations?.length > 0 ? (
-            <div className="reservations-container">
-              {reservations.map((reservation) => {
-                const animal = animals[reservation.animal_id];
-                return (
-                  <div key={reservation.id} className="reservation-card">
-                    {animal ? (
-                      <>
-                        <p>Type: {animal.type}</p>
-                        <p>Breed: {animal.breed}</p>
-                        <p>Number of Animals: {animal.num_animals}</p>
-                        <img
-                          src={animal.animal_img_url}
-                          alt={animal.type}
-                          width="150"
-                        />
-                      </>
-                    ) : (
-                      <p>Loading animal info...</p>
-                    )}
-                    <p>
-                      Start Date:{" "}
-                      {format(new Date(reservation.start_date), "MMMM d, yyyy")}
-                    </p>
-                    <p>
-                      End Date:{" "}
-                      {format(new Date(reservation.end_date), "MMMM d, yyyy")}
-                    </p>
-                    <button
-                      onClick={() =>
-                        navigate(`/reservations/${reservation.id}`)
-                      }
-                      style={{ padding: "8px" }}
-                    >
-                      Edit Reservation
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
+        {reservations?.length > 0 ? (
+          <div className="reservations-container">
+            {reservations.map((reservation) => {
+              const animal = animals[reservation.animal_id];
+              return (
+                <div key={reservation.id} className="reservation-card">
+                  {animal ? (
+                    <>
+                      <p>Type: {animal.type}</p>
+                      <p>Breed: {animal.breed}</p>
+                      <p>Number of Animals: {animal.num_animals}</p>
+                      <img
+                        src={animal.animal_img_url}
+                        alt={animal.type}
+                        width="150"
+                      />
+                    </>
+                  ) : (
+                    <p>Loading animal info...</p>
+                  )}
+                  <p>
+                    Start Date:{" "}
+                    {format(new Date(reservation.start_date), "MMMM d, yyyy")}
+                  </p>
+                  <p>
+                    End Date:{" "}
+                    {format(new Date(reservation.end_date), "MMMM d, yyyy")}
+                  </p>
+                  <button
+                    onClick={() => navigate(`/reservations/${reservation.id}`)}
+                    style={{ padding: "8px" }}
+                  >
+                    Edit Reservation
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div>
             <p>You currently have no reservations.</p>
-          )}
-        </div>
+            <Link to="/availableanimals">
+              <button className="view-av-animals">View Available Animals</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

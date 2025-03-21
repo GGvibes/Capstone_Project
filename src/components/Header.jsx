@@ -69,10 +69,10 @@ export default function Header({ token, logout }) {
                     <hr />
                     <Link
                       to={"/availableanimals"}
-                      className="menu-item"
+                      
                       style={{textDecoration: "none", width:"100%" }}
                     >
-                      Available Animals
+                      <div className="menu-item">Available Animals</div>
                     </Link>
                   </>
                 ) : (

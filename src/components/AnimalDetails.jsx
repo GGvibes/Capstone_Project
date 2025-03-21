@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { format } from "date-fns";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 function AnimalDetails({ token, userId }) {
   const { id } = useParams();
@@ -10,18 +10,11 @@ function AnimalDetails({ token, userId }) {
   const [endDate, setEndDate] = useState("");
   const [successMessage, setSuccessMessage] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (reservationid) => {
-    const isSure = window.confirm(
-      "Are you sure you want to create this reservation?"
-    );
-
-    if (isSure) {
-      makeReservation(reservationid);
-    } else {
-      console.log("Reservation deletion canceled.");
-    }
-  };
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   useEffect(() => {
     async function fetchAnimalDetails() {
@@ -49,6 +42,30 @@ function AnimalDetails({ token, userId }) {
   async function makeReservation(event) {
     event.preventDefault();
 
+      
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in 'YYYY-MM-DD' format
+
+  if (new Date(startDate) < new Date(today)) {
+    setError("Start date must be in the future.");
+    return;
+  }
+
+  if (new Date(endDate) < new Date(today)) {
+    setError("End date must be in the future.");
+    return;
+  }
+
+    if (new Date(startDate) > new Date(endDate)) {
+      setError("Start date must be before the end date.");
+      return;
+    }
+
+
+    if (!startDate || !endDate) {
+      setError("Must enter both a start date and end date to reserve.");
+      return;
+    }
+
     setError(null);
     setSuccessMessage(null);
     setIsSubmitting(true);
@@ -63,7 +80,7 @@ function AnimalDetails({ token, userId }) {
         body: JSON.stringify({
           user_id: userId,
           animal_id: animal.id,
-          start_date: new Date(startDate).toISOString(), // Ensure it's an ISO string
+          start_date: new Date(startDate).toISOString(),
           end_date: new Date(endDate).toISOString(),
         }),
       });
@@ -71,12 +88,18 @@ function AnimalDetails({ token, userId }) {
       const result = await response.json();
 
       if (!response.ok) {
-        console.log("Response result", result)
-        setError(result.message || result.error || "An error occurred making the reservation.");
+        console.log("Response result", result);
+        setError(
+          result.message ||
+            result.error ||
+            "An error occurred making the reservation."
+        );
         return;
       }
 
       setSuccessMessage("Reservation created Successfully!");
+      closeModal();
+      navigate("/account");
     } catch (error) {
       console.error("Reservation Error:", error);
       setError(
@@ -90,55 +113,64 @@ function AnimalDetails({ token, userId }) {
 
   return (
     <div className="animal-details-page">
-      <h2>Animal Information:</h2>
-      <p>{animal.type}</p>
-      <p>Breed: {animal.breed}</p>
-      <p>Number of Animals: {animal.num_animals}</p>
-      <img
-        src={animal.animal_img_url}
-        alt={animal.type}
-        style={{ width: "300px" }}
-      />
-      <p>Would you like to host these animals?</p>
-      {!token && <Link to="/signup">Please Sign Up to be a Host</Link>}
+      <div className="animal-details-container">
+        <img
+          src={animal.animal_img_url}
+          alt={animal.type}
+          className="animal-image"
+        />
+        <div className="animal-details">
+          <h2>Animal Information:</h2>
+          <p>{animal.type}</p>
+          <p>Breed: {animal.breed}</p>
+          <p>Number of Animals: {animal.num_animals}</p>
+          {!token && <Link to="/signup">Please Sign Up to be a Host</Link>}
       {token && (
         <>
-          <p>Make a Reservation:</p>
-
-          <form className="dates-form">
-            <label>
-              Start Date:
-              <input
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              End Date:
-              <input
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              />
-            </label>
-            <br />
-            {error && <p className="error-message">{error}</p>}
-            {successMessage && (
-              <p className="success-message">{successMessage}</p>
-            )}
-            <button
-              style={{ margin: "20px" }}
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-              type="submit"
-            >
-              {isSubmitting ? "Submitting..." : "Save Reservation"}
-            </button>
-          </form>
+          <button className="host-animals" onClick={openModal}>Host these Animals</button>
+          <Modal show={showModal} handleClose={closeModal}>
+            <form className="dates-form">
+              <h4>Reserve Dates</h4>
+              <label>
+                Start Date:
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+              </label>
+              <br />
+              <label>
+                End Date:
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </label>
+              <br />
+              {error && <p className="error-message">{error}</p>}
+              {successMessage && (
+                <p className="success-message">{successMessage}</p>
+              )}
+              <button
+                className="save-res"
+                style={{ margin: "20px" }}
+                onClick={makeReservation}
+                disabled={isSubmitting}
+                type="submit"
+              >
+                {isSubmitting ? "Submitting..." : "Save Reservation"}
+              </button>
+            </form>
+            </Modal>
+          
         </>
       )}
+        </div>
+        
+      </div>
+      
     </div>
   );
 }

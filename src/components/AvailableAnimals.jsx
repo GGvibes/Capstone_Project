@@ -23,11 +23,10 @@ export default function AvailableAnimals({ token }) {
 
   useEffect(() => {
     async function fetchAnimals() {
-
       try {
         const response = await fetch("http://localhost:5000/api/animals", {
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
         });
 
@@ -72,17 +71,16 @@ export default function AvailableAnimals({ token }) {
             ? filteredResults
             : animals
           ).map((animal) => (
-            <div className="animals-card" key={animal.id}>
-              <p>Type: {animal.type}</p>
-              <p>Number of animals: {animal.num_animals}</p>
-              <img
-                style={{ width: "200px", maxHeight:"200px", margin: "20px" }}
-                src={animal.animal_img_url}
-              ></img>
-              <Link to={`/animals/${animal.id}`}>
-                <button>See Details</button>
-              </Link>
-            </div>
+            <Link style={{textDecoration: "none", color: "black"}} to={`/animals/${animal.id}`}>
+              <div className="animals-card" key={animal.id}>
+                <p style={{paddingTop:"20px"}}>Type: {animal.type}</p>
+                <p>Number of animals: {animal.num_animals}</p>
+                <img
+                  style={{ width: "200px", maxHeight: "200px", margin: "20px" }}
+                  src={animal.animal_img_url}
+                ></img>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
