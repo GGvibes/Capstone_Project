@@ -98,7 +98,7 @@ footer {
 
 .footer-title:hover {
   cursor: pointer;
- }
+}
 
 .column1 {
   list-style: none;
@@ -473,6 +473,20 @@ footer {
   margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 30px;
+  
+}
+
+.txt-img-container {
+  display: flex;
+  gap: 15px;
+}
+
+.eggs-pic {
+  height: 215px;
+  width: 230px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-top: 20px;
 }
 
 .accountDetails {
@@ -492,7 +506,7 @@ footer {
 }
 
 .accountDetails h2 p {
-  margin: 2px 0; 
+  margin: 2px 0;
   line-height: 1;
 }
 
@@ -548,7 +562,7 @@ footer {
   width: 50%;
   padding-bottom: 10px;
   text-align: center;
-  max-width: 500px; 
+  max-width: 500px;
   min-width: 280px;
   box-sizing: border-box;
 }
@@ -588,7 +602,7 @@ button:hover {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 80%;  
+  width: 80%;
   gap: 10%;
   margin-bottom: 20px;
   margin-top: 50px;
@@ -596,7 +610,7 @@ button:hover {
 }
 
 .animal-image {
-  width: 50%;  
+  width: 50%;
   height: auto;
 }
 
@@ -613,7 +627,8 @@ button:hover {
   text-align: center;
 }
 
-.error-message, .success-message {
+.error-message,
+.success-message {
   margin-top: 10px;
 }
 
@@ -725,3 +740,42 @@ button {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
+
+.searchBox {
+  width: 300px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.searchBox:focus {
+  border-color: #3e3e3e;
+  box-shadow: 0 0 5px rgba(193, 193, 194, 0.8);
+}
+
+.availableAnimalsPage h2 {
+  position: relative;
+  font-size: 2.5rem;
+  color: rgb(0, 0, 0);
+  margin-top: 200px;
+  text-align: center;
+}
+
+.availableAnimalsPage {
+  text-align: center;
+}
+
+.signup-host-button {
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 0 5px rgba(193, 193, 194, 0.8);
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(255, 154, 107);
+}
+

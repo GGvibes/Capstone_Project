@@ -124,7 +124,7 @@ function AnimalDetails({ token, userId }) {
           <p>{animal.type}</p>
           <p>Breed: {animal.breed}</p>
           <p>Number of Animals: {animal.num_animals}</p>
-          {!token && <Link to="/signup">Please Sign Up to be a Host</Link>}
+          {!token && <Link className="signup-host-button" to="/signup">Sign Up to be a Host</Link>}
       {token && (
         <>
           <button className="host-animals" onClick={openModal}>Host these Animals</button>

@@ -13,7 +13,6 @@ export default function Signup({ setToken }) {
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
-    
     event.preventDefault();
 
     setError(null);
@@ -48,7 +47,7 @@ export default function Signup({ setToken }) {
       });
 
       const result = await response.json();
-      
+
       if (!response.ok) {
         setError(result.message || "An error occurred during registration.");
         return;
@@ -57,7 +56,7 @@ export default function Signup({ setToken }) {
       setSuccessMessage("Registration successful! You are now logged in.");
       if (result.token) {
         setToken(result.token);
-        
+
         navigate("/account");
       }
     } catch (error) {
@@ -79,7 +78,7 @@ export default function Signup({ setToken }) {
         src="https://c.pxhere.com/photos/3b/f8/lamb_sheep_country_natural-602711.jpg!d"
       ></img>
       <div className="becomeHostInfo">
-        <h2 style={{marginTop:"200px"}}>Become a Host</h2>
+        <h2 style={{ marginTop: "200px" }}>Become a Host</h2>
 
         <p>
           Are you interested in hosting a pastured animal on your land? Becoming
@@ -120,7 +119,8 @@ export default function Signup({ setToken }) {
         <h3>Other Considerations</h3>
         <p>
           Fencing & Shelter: We will provide the necessary fencing and shelter
-          for all animals. Animals will be rotationally grazed to maintain pasture and animal health.
+          for all animals. Animals will be rotationally grazed to maintain
+          pasture and animal health.
         </p>
         <p>
           Time Commitment: While Host-a-Herd handles major animal care aspects,
@@ -131,13 +131,18 @@ export default function Signup({ setToken }) {
           zoning laws and livestock regulations.
         </p>
         <h3> Benefits of Hosting</h3>
-        <p>
-          Receive high-quality pasture-raised meats based on your membership
-          level. Contribute to sustainable and ethical farming practices. Enjoy
-          the natural benefits of animal grazing, such as improved soil health
-          and pasture management. Interested in becoming a host? Sign up today
-          to learn more and start your journey with Host-a-Herd!
-        </p>
+        <div className="txt-img-container">
+         
+          <p style={{ width: "60vw" }}>
+            Receive high-quality pasture-raised meat, eggs and dairy based on
+            your membership level. Contribute to sustainable and ethical farming
+            practices. Enjoy the natural benefits of animal grazing, such as
+            improved soil health and pasture management. Interested in becoming
+            a host? Sign up today to learn more and start your journey with
+            Host-a-Herd!
+          </p>
+          <img alt="eggs-in-basket" className="eggs-pic" src="./assets/eastereggereggs.jpg"></img>
+        </div>
       </div>
 
       <div style={{ paddingBottom: "200px" }} className="login-container">

@@ -67,10 +67,10 @@ export default function Header({ token, logout }) {
                       <div className="menu-item">View Account</div>
                     </Link>
                     <hr />
+
                     <Link
                       to={"/availableanimals"}
-                      
-                      style={{textDecoration: "none", width:"100%" }}
+                      style={{ textDecoration: "none", width: "100%" }}
                     >
                       <div className="menu-item">Available Animals</div>
                     </Link>
@@ -96,13 +96,12 @@ export default function Header({ token, logout }) {
                     >
                       <div className="menu-item">Join as a Host</div>
                     </Link>
-                    <hr style={{marginBottom:"10px"}} />
+                    <hr style={{ marginBottom: "10px" }} />
                     <Link
                       to={"/availableanimals"}
-                      className="menu-item"
-                      style={{textDecoration: "none", width:"100%" }}
+                      style={{ textDecoration: "none", width: "100%" }}
                     >
-                      Available Animals
+                    <div className="menu-item">Available Animals</div>  
                     </Link>
                   </>
                 )}
