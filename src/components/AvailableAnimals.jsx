@@ -53,8 +53,16 @@ export default function AvailableAnimals({ token }) {
 
   return (
     <div>
+      <img
+        className="cows-header"
+        alt="cows-grazing"
+        src="https://www.publicdomainpictures.net/pictures/40000/velka/cows-grazing.jpg"
+      ></img>
       <div className="availableAnimalsPage">
-        <h3 style={{ marginLeft: "50px" }}>Search Animals here:</h3>
+        <h2 style={{ marginLeft: "50px", marginTop: "200px" }}>
+          Available Animals
+        </h2>
+        <h4 style={{ marginLeft: "50px" }}>Search Animals here:</h4>
         <input
           style={{ marginLeft: "50px" }}
           className="searchBox"
@@ -65,15 +73,17 @@ export default function AvailableAnimals({ token }) {
         {searchInput.trim() && filteredResults.length === 0 && (
           <h3 className="noAnimalsFound">No Animals match your search.</h3>
         )}
-        <h2 style={{ marginLeft: "50px" }}>Available Animals:</h2>
         <div className="animals-container">
           {(searchInput.trim() && filteredResults.length > 0
             ? filteredResults
             : animals
           ).map((animal) => (
-            <Link style={{textDecoration: "none", color: "black"}} to={`/animals/${animal.id}`}>
+            <Link
+              style={{ textDecoration: "none", color: "black" }}
+              to={`/animals/${animal.id}`}
+            >
               <div className="animals-card" key={animal.id}>
-                <p style={{paddingTop:"20px"}}>Type: {animal.type}</p>
+                <p style={{ paddingTop: "20px" }}>Type: {animal.type}</p>
                 <p>Number of animals: {animal.num_animals}</p>
                 <img
                   style={{ width: "200px", maxHeight: "200px", margin: "20px" }}

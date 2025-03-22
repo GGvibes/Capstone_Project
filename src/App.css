@@ -701,3 +701,23 @@ button {
 .save-res:hover {
   box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
 }
+
+.cows-header {
+  position: absolute;
+  top: 0;
+  z-index: -100;
+  height: 280px;
+  width: 100vw;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.cows-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
