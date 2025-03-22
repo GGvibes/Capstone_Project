@@ -54,7 +54,7 @@ export default function AvailableAnimals({ token }) {
   return (
     <div>
       <img
-        className="cows-header"
+        className="header-img"
         alt="cows-grazing"
         src="https://www.publicdomainpictures.net/pictures/40000/velka/cows-grazing.jpg"
       ></img>

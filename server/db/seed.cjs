@@ -8,11 +8,31 @@ const {
   getAllReservations,
 } = require("./index.cjs");
 
+const cloudinary = require ('cloudinary').v2;
+require('dotenv').config();
+
+cloudinary.config({
+  cloud_name: 'daqyrjiug',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+async function uploadImage(imageUrl) {
+  try {
+    const result = await cloudinary.uploader.upload(imageUrl, {
+      folder: "animals" ,
+      use_filename: true,
+    });
+    return result.secure_url; 
+  } catch (error) {
+    console.error("Cloudinary upload failed:", error);
+  }
+}
+
 async function dropTables() {
   try {
     console.log("Starting to drop tables...");
 
-    // have to make sure to drop in correct order
     await client.query(`
       DROP TABLE IF EXISTS reservations;
       DROP TABLE IF EXISTS animals;
@@ -105,81 +125,89 @@ async function createInitialUsers() {
 async function createInitialAnimals() {
   try {
     console.log("Starting to create animals...");
-
-    await createAnimals({
+const animals = [
+  {
       type: "Chicken",
       num_animals: 3,
       breed: "Easter Eggers",
       animal_img_url: "https://www.chickensforbackyards.com/wp-content/uploads/2017/10/320Easter20Egger1.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Sheep",
       num_animals: 2,
       breed: "Cotswold",
       animal_img_url: "https://i.pinimg.com/originals/a7/b5/a5/a7b5a561d9f4e81276b18982a6bb022e.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Cow Calf pair",
       num_animals: 2,
       breed: "Jersey",
       animal_img_url: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-jersey-cow-and-calf-bethany-benike.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Alpaca",
       num_animals: 2,
       breed: "Huacaya",
       animal_img_url: "https://www.marylandzoo.org/wp-content/uploads/2017/10/alpaca_web.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Chicken",
       num_animals: 3,
       breed: "Buff Orpington",
       animal_img_url: "https://i.pinimg.com/originals/fb/d1/92/fbd192e5b8bbbde2c8e45be1ea4773af.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Sheep",
       num_animals: 3,
       breed: "Merino",
       animal_img_url: "https://images.freeimages.com/images/large-previews/e1a/merino-sheep-1337359.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Cow",
       num_animals: 3,
       breed: "Galloway",
       animal_img_url: "https://www.miniaturegalloway.com.au/images/Storm_Chaser_paddie_2022_06_17_1.jpg"
-    });
-    await createAnimals({
-      type: "Pig",
-      num_animals: 3,
-      breed: "Mixed Breed",
-      animal_img_url: "https://i2.wp.com/onpasture.com/wp-content/uploads/2014/04/pasture.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Pig",
       num_animals: 3,
       breed: "Berkshire",
       animal_img_url: "https://www.texasridge.com/uploads/1/1/0/7/11074616/published/img-5541.jpg?1675795567"
-    });
-    await createAnimals({
+    },
+    {
       type: "Chicken",
       num_animals: 3,
       breed: "Unkown",
       animal_img_url: "https://rafterwranch.net/wp-content/uploads/2019/06/pasture-raised-chicken-1-1080x675.jpg"
-    });
-    await createAnimals({
+    },
+    {
       type: "Chicken",
       num_animals: 15,
       breed: "Unkown",
-      animal_img_url: " https://i.pinimg.com/736x/aa/cd/4e/aacd4e9d8ba4c4f99fa90540dfba3269--rhode-island-red-good-girl.jpg"
-    });
-    await createAnimals({
+      animal_img_url: "https://i.pinimg.com/736x/aa/cd/4e/aacd4e9d8ba4c4f99fa90540dfba3269--rhode-island-red-good-girl.jpg"
+    },
+    {
       type: "Cow Calf Pair",
       num_animals: 2,
       breed: "Highland",
-      animal_img_url: " https://peachcreekfarm.us/NewSite/wp-content/uploads/2021/05/IMG_0190-600x600.jpeg"
+      animal_img_url: "https://peachcreekfarm.us/NewSite/wp-content/uploads/2021/05/IMG_0190-600x600.jpeg"
+    }
+]
+for (let animal of animals) {
+  const cloudinaryUrl = await uploadImage(animal.animal_img_url);
+  if (cloudinaryUrl) {
+    await createAnimals({
+      type: animal.type,
+      num_animals: animal.num_animals,
+      breed: animal.breed,
+      animal_img_url: cloudinaryUrl
     });
-   
-  
+    console.log(`Uploaded ${animal.breed} image to Cloudinary`);
+  } else {
+    console.log(`Failed to upload ${animal.breed} image`);
+  }
+}
+
     console.log("Finished creating animals!");
   } catch (error) {
     console.error("Error creating animals!");

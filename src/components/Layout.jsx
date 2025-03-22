@@ -13,13 +13,9 @@ function Layout({token, logout}) {
   return (
     <div className="app-container">
       <Header token={token} logout={logout}></Header>
-      {isHomePage ? (
+      {isHomePage && (
         <a className="learnMore" onClick={() => navigate("/aboutcontact")}>
           Learn More
-        </a>
-      ) : (
-        <a className="home-link" onClick={() => navigate("/")}>
-          Home
         </a>
       )}
       <main className="content">

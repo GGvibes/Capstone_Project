@@ -73,8 +73,13 @@ export default function Signup({ setToken }) {
 
   return (
     <div className="content">
+      <img
+        className="header-img"
+        alt="cow-and-calf"
+        src="https://c.pxhere.com/photos/3b/f8/lamb_sheep_country_natural-602711.jpg!d"
+      ></img>
       <div className="becomeHostInfo">
-        <h2>Become a Host</h2>
+        <h2 style={{marginTop:"200px"}}>Become a Host</h2>
 
         <p>
           Are you interested in hosting a pastured animal on your land? Becoming

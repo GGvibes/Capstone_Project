@@ -706,7 +706,7 @@ button {
   box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1), 0 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-.cows-header {
+.header-img {
   position: absolute;
   top: 0;
   z-index: -100;
@@ -716,7 +716,7 @@ button {
   filter: brightness(70%);
 }
 
-.cows-header::after {
+.header-img::after {
   content: "";
   position: absolute;
   top: 0;

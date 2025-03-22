@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "cloudinary": "^2.6.0",
     "crypto": "^1.0.1",
     "date-fns": "^4.1.0",
     "react": "^19.0.0",
