@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Footer({ token, logout }) {
   const navigate = useNavigate();
@@ -7,9 +7,11 @@ export default function Footer({ token, logout }) {
       <footer className="footer-container">
         <hr />
         <div className="footer-content">
-          <h1 style={{ color: "black" }} className="footer-title">
-            Host-a-Herd
-          </h1>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <h1 style={{ color: "black" }} className="footer-title">
+              Host-a-Herd
+            </h1>
+          </Link>
           <div className="footer-links">
             <ul className="column1">
               <li

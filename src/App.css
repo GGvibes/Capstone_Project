@@ -96,6 +96,10 @@ footer {
   font-weight: 400;
 }
 
+.footer-title:hover {
+  cursor: pointer;
+ }
+
 .column1 {
   list-style: none;
 }
