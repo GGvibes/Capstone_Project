@@ -176,7 +176,7 @@ const animals = [
     },
     {
       type: "Chicken",
-      num_animals: 3,
+      num_animals: 2,
       breed: "Unkown",
       animal_img_url: "https://rafterwranch.net/wp-content/uploads/2019/06/pasture-raised-chicken-1-1080x675.jpg"
     },
@@ -185,6 +185,12 @@ const animals = [
       num_animals: 15,
       breed: "Unkown",
       animal_img_url: "https://i.pinimg.com/736x/aa/cd/4e/aacd4e9d8ba4c4f99fa90540dfba3269--rhode-island-red-good-girl.jpg"
+    },
+    {
+      type: "Pig",
+      num_animals: 2,
+      breed: "Unkown",
+      animal_img_url: "https://www.beginningfarmers.org/wp-content/uploads/sites/4/2020/09/rsz_hogs.jpg"
     },
     {
       type: "Cow Calf Pair",
