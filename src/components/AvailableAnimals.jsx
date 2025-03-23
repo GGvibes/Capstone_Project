@@ -139,7 +139,7 @@ export default function AvailableAnimals({ token }) {
         <Modal show={showModal} handleClose={() => setShowModal(false)}>
           <h3 style={{ textAlign: "center" }}>Select Animal Type(s):</h3>
           <ul className="filter-list">
-            {["Chicken", "Cow", "Cow Calf Pair", "Sheep", "Pig", "Alpaca"].map(
+            {["Chicken", "Cow", "Sheep", "Pig", "Alpaca"].map(
               (type) => (
                 <li
                   key={type}

@@ -139,7 +139,7 @@ const animals = [
       animal_img_url: "https://i.pinimg.com/originals/a7/b5/a5/a7b5a561d9f4e81276b18982a6bb022e.jpg"
     },
     {
-      type: "Cow Calf pair",
+      type: "Cow",
       num_animals: 2,
       breed: "Jersey",
       animal_img_url: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-jersey-cow-and-calf-bethany-benike.jpg"
@@ -193,7 +193,7 @@ const animals = [
       animal_img_url: "https://www.beginningfarmers.org/wp-content/uploads/sites/4/2020/09/rsz_hogs.jpg"
     },
     {
-      type: "Cow Calf Pair",
+      type: "Cow",
       num_animals: 2,
       breed: "Highland",
       animal_img_url: "https://peachcreekfarm.us/NewSite/wp-content/uploads/2021/05/IMG_0190-600x600.jpeg"
