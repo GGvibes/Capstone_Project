@@ -47,24 +47,22 @@ export default function Signup({ setToken }) {
       });
 
       const result = await response.json();
+      console.log("Signup response:", result); // ✅ Debugging step
 
       if (!response.ok) {
         setError(result.message || "An error occurred during registration.");
         return;
       }
 
-      setSuccessMessage("Registration successful! You are now logged in.");
       if (result.token) {
+        console.log("Token received:", result.token); // ✅ Debugging step
         setToken(result.token);
-
+        localStorage.setItem("token", result.token);
         navigate("/account");
       }
     } catch (error) {
       console.error("Signup Error:", error);
-      setError(
-        "An unexpected error occurred. Please try again.",
-        error.message
-      );
+      setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -86,36 +84,36 @@ export default function Signup({ setToken }) {
           agriculture, bring local food to your community, and contribute to
           ethical animal stewardship.
         </p>
-
-        <h3>Land Requirements</h3>
-
-        <p>
-          Each type of animal has different space and care needs. Below are the
-          general guidelines for hosting:
-        </p>
-        <p>
-          Chickens: Require at least 500 sq. ft. of outdoor space with natural
-          foraging opportunities. A secure coop is recommended for protection at
-          night.
-        </p>
-        <p>
-          Rabbits: Need at least 200 sq. ft. of well-drained grassy area with
-          shaded spots. A predator-proof enclosure is required.
-        </p>
-        <p>
-          Sheep or Goats: Require ¼ to ½ acre per animal, with proper fencing
-          (woven wire or electric). Access to shelter and clean water is
-          essential.
-        </p>
-        <p>
-          Pigs: Need at least ½ acre per pig, with sturdy fencing and a wallow
-          area for cooling. Shade and access to fresh water are necessary.
-        </p>
-        <p>
-          Cattle: Requires a minimum of 1 acre per cow, with rotational grazing
-          preferred to maintain pasture health. A water source and windbreak for
-          shelter are important.
-        </p>
+        <div className="land-requirements">
+          <h3>Land Requirements</h3>
+          <p>
+            Each type of animal has different space and care needs. Below are
+            the general guidelines for hosting:
+          </p>
+          <p>
+            Chickens: Require at least 500 sq. ft. of outdoor space with natural
+            foraging opportunities. A secure coop is recommended for protection
+            at night.
+          </p>
+          <p>
+            Rabbits: Need at least 200 sq. ft. of well-drained grassy area with
+            shaded spots. A predator-proof enclosure is required.
+          </p>
+          <p>
+            Sheep or Goats: Require ¼ to ½ acre per animal, with proper fencing
+            (woven wire or electric). Access to shelter and clean water is
+            essential.
+          </p>
+          <p>
+            Pigs: Need at least ½ acre per pig, with sturdy fencing and a wallow
+            area for cooling. Shade and access to fresh water are necessary.
+          </p>
+          <p>
+            Cattle: Requires a minimum of 1 acre per cow, with rotational
+            grazing preferred to maintain pasture health. A water source and
+            windbreak for shelter are important.
+          </p>
+        </div>
         <h3>Other Considerations</h3>
         <p>
           Fencing & Shelter: We will provide the necessary fencing and shelter
@@ -132,7 +130,6 @@ export default function Signup({ setToken }) {
         </p>
         <h3> Benefits of Hosting</h3>
         <div className="txt-img-container">
-         
           <p style={{ width: "60vw" }}>
             Receive high-quality pasture-raised meat, eggs and dairy based on
             your membership level. Contribute to sustainable and ethical farming
@@ -141,11 +138,15 @@ export default function Signup({ setToken }) {
             a host? Sign up today to learn more and start your journey with
             Host-a-Herd!
           </p>
-          <img alt="eggs-in-basket" className="eggs-pic" src="./assets/eastereggereggs.jpg"></img>
+          <img
+            alt="eggs-in-basket"
+            className="eggs-pic"
+            src="./assets/eastereggereggs.jpg"
+          ></img>
         </div>
       </div>
 
-      <div style={{ paddingBottom: "200px" }} className="login-container">
+      <div style={{ paddingBottom: "300px" }} className="login-container">
         <h2>Sign Up to Become a Host</h2>
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}

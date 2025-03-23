@@ -468,12 +468,23 @@ footer {
   margin-top: 20px;
 }
 
-.becomeHostInfo {
+.becomeHostInfo{
   max-width: 1000px;
-  margin-left: 30px;
+  margin-left: 50px;
   margin-right: 30px;
   margin-bottom: 30px;
-  
+}
+
+.becomeHostInfo p {
+  margin-left: 50px;
+}
+
+.becomeHostInfo h3 {
+  margin-left: 50px;
+}
+
+.becomeHostInfo h2 {
+  margin-left: 50px;
 }
 
 .txt-img-container {
@@ -833,4 +844,27 @@ button {
   font-size: 12px;
   padding: 0;
   margin-top: -3px;
+}
+
+.land-requirements {
+  background-size: cover; 
+  background-position: center bottom; 
+  background-repeat: no-repeat;
+  margin-left: -50px;
+  padding: 30px;
+  overflow: hidden;
+  filter: brightness(130%);
+  width: 100vw;
+  text-shadow: rgb(252, 252, 249) 1px 0 10px;
+}
+
+.land-requirements p {
+  margin-left: 70px;
+  margin-right: 100px;
+  text-shadow: 5px #e3e2e2;
+}
+
+.land-requirements h3 {
+  margin-left: 70px;
+  margin-right: 100px;
 }

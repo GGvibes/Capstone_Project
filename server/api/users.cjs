@@ -6,6 +6,8 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { requireUser }= require("./utils")
 
+console.log("Loaded JWT_SECRET:", process.env.JWT_SECRET);
+
 usersRouter.get("/me",requireUser, async (req, res, next) => {
   try {
     const user = await getUserById(req.user.id);
@@ -72,34 +74,38 @@ usersRouter.post("/login", async (req, res, next) => {
 usersRouter.post("/signup", async (req, res, next) => {
   const { firstName, lastName, email, password, address } = req.body;
   console.log("Request body:", req.body); 
+
   try {
-    const user = await createUser({
-      firstName,
-      lastName,
-      email,
-      password,
-      address,
-    });
+    const user = await createUser({ firstName, lastName, email, password, address });
 
-    const token = await jwt.sign(
-      {
-        id: user.id,
-        email,
-      },
+    if (!user) {
+      console.log("User creation failed");
+      return res.status(400).send({ message: "User creation failed" });
+    }
+
+    console.log("User created:", user);
+
+    console.log("JWT_SECRET before signing:", process.env.JWT_SECRET);
+    console.log("User ID:", user.id, "Email:", user.email);
+
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is missing before token generation");
+    }
+
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
       process.env.JWT_SECRET,
-      {
-        expiresIn: "1w",
-      }
+      { expiresIn: "1w" }
     );
-    
 
-    res.status(201).send({
-      message: "thank you for signing up",
-      token,
-    });
-  } catch ({ name, message }) {
-    next({ name, message });
+    console.log("Generated token:", token);
+
+    res.status(201).send({ message: "Thank you for signing up", token });
+  } catch (error) {
+    console.error("Error during user signup or token generation:", error);
+    res.status(500).send({ message: "Error generating token or creating user" });
   }
 });
+
 
 module.exports = usersRouter;
