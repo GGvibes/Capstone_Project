@@ -235,7 +235,6 @@ async function getReservationById(reservation_id) {
 
 async function getReservationsByUser(user_id) {
   try {
-    console.log("Fetching reservations for user_id:", user_id); //debugging
     const { rows } = await client.query(
       `
       SELECT id, user_id, animal_id, start_date, end_date
@@ -245,7 +244,6 @@ async function getReservationsByUser(user_id) {
       [user_id]
     );
 
-    console.log("Query result:", rows); //Debug
 
     if (rows.length === 0) {
       throw {

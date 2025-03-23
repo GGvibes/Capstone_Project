@@ -32,8 +32,7 @@ export default function AccountPage({ token }) {
         const result = await response.json();
         const userId = result.id;
         setAccountData(result);
-        console.log(result);
-
+        
         const reservationsResponse = await fetch(
           `http://localhost:5000/api/reservations/lookupbyuser/${userId}`,
           {

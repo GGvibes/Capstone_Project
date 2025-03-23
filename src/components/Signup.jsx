@@ -47,7 +47,6 @@ export default function Signup({ setToken }) {
       });
 
       const result = await response.json();
-      console.log("Signup response:", result); // ✅ Debugging step
 
       if (!response.ok) {
         setError(result.message || "An error occurred during registration.");
@@ -55,7 +54,6 @@ export default function Signup({ setToken }) {
       }
 
       if (result.token) {
-        console.log("Token received:", result.token); // ✅ Debugging step
         setToken(result.token);
         localStorage.setItem("token", result.token);
         navigate("/account");

@@ -25,12 +25,8 @@ reservationsRouter.get("/", requireUser, async (req, res, next) => {
 
 reservationsRouter.get("/lookupbyuser/:user_id",requireUser, async (req, res, next) => {
 
-  console.log("Received GET request for user reservations. User ID:", req.params.user_id); //Debug 
-
     try {
       const reservations = await getReservationsByUser(req.params.user_id);
-
-      console.log("Reservations found:", reservations); //Debug
 
       res.json(reservations);
     } catch (error) {
@@ -113,8 +109,6 @@ reservationsRouter.post("/", requireUser, async (req, res, next) => {
 reservationsRouter.delete("/:id", requireUser, async (req, res, next) => {
   const user_id = req.user.id;
   const { id } = req.params;
-
-  console.log(`Received DELETE request for reservation ID: ${id} by user ${user_id}`);  // Debugging
 
   try {
     const deletedReservation = await deleteReservation({ user_id, id});

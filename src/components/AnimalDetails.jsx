@@ -34,8 +34,6 @@ function AnimalDetails({ token, userId }) {
     }
   }, [id]);
 
-  console.log(animal);
-
   if (error) return <p>Error: {error}</p>;
   if (!animal) return <p>Loading...</p>;
 
@@ -88,7 +86,6 @@ function AnimalDetails({ token, userId }) {
       const result = await response.json();
 
       if (!response.ok) {
-        console.log("Response result", result);
         setError(
           result.message ||
             result.error ||
