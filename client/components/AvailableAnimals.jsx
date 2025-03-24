@@ -44,7 +44,7 @@ export default function AvailableAnimals({ token }) {
   useEffect(() => {
     async function fetchAnimals() {
       try {
-        const response = await fetch("http://localhost:5000/api/animals", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/animals`, {
           headers: {
             "Content-Type": "application/json",
           },

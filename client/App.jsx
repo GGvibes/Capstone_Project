@@ -20,7 +20,7 @@ function App() {
   const navigate = useNavigate();
 
   const fetchUserDetails = async () => {
-    const response = await fetch("http://localhost:5000/api/users/me", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/me`, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("token")}`,
       },

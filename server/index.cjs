@@ -10,7 +10,7 @@ const animalsRouter = require('./api/animals.cjs')
 const reservationsRouter = require('./api/reservations.cjs')
 
 server.use(cors({
-    origin: "http://localhost:5173",
+  origin: process.env.FRONTEND_URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }))

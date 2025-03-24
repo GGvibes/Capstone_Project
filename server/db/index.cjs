@@ -3,18 +3,11 @@ const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const { Client } = pg;
-
-const databaseURL =
-  process.env.DATABASE_URL ||
-  "postgres://postgres:juniper23@localhost:5432/capstone_project";
+const { Client } = require('pg');
 
 const client = new Client({
-  connectionString: databaseURL,
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : undefined,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, 
 });
 
 /**

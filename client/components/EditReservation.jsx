@@ -23,7 +23,7 @@ export default function EditReservation() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/reservations/${id}`,
+          `${import.meta.env.VITE_API_URL}/reservations/${id}`,
           {
             method: "GET",
             headers: {
@@ -38,7 +38,7 @@ export default function EditReservation() {
         setReservation(data);
 
         const animalResponse = await fetch(
-          `http://localhost:5000/api/animals/${data.animal_id}`,
+          `${import.meta.env.VITE_API_URL}/animals/${data.animal_id}`,
           {
             method: "GET",
             headers: {
@@ -92,7 +92,7 @@ export default function EditReservation() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/${reservation.id}`,
+        `${import.meta.env.VITE_API_URL}/reservations/${reservation.id}`,
         {
           method: "PUT",
           headers: {
@@ -129,7 +129,7 @@ export default function EditReservation() {
   const deleteReservation = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch(`http://localhost:5000/api/reservations/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/reservations/${id}`, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
