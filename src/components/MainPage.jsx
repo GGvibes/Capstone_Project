@@ -84,7 +84,7 @@ export default function MainPage() {
             </div>
           </div>
         </div>
-        <button onClick={() => navigate("/about")} className="learnMoreButton">Learn More</button>
+        <button onClick={() => navigate("/aboutcontact")} className="learnMoreButton">Learn More</button>
       </div>
     </div>
   );
