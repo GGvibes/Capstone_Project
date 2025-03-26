@@ -248,31 +248,18 @@ footer {
   float: right;
   width: 50vw;
 }
-
-@media screen and (max-width: 768px) {
-  .aboutPg
-  .twoChickens {
-    float: none; /* Remove floating */
-    width: 100%; /* Make them take full width */
-    text-align: center; /* Optional: Center align text */
-  }
-  .twoChickens{
-    margin-top: 20px; /* Add spacing between elements */
-  }
-}
-
 @media screen and (max-width: 768px) {
   .cowPgMain,
   .cowsPicMain {
-    float: none; /* Remove floating */
-    width: 100%; /* Make them take full width */
-    text-align: center; /* Optional: Center align text */
+    float: none;
+    width: 100%;
+    text-align: center;
   }
-
   .cowsPicMain {
-    margin-top: 20px; /* Add spacing between elements */
+    margin-top: 20px;
   }
 }
+
 
 .twoChickens {
   position: absolute;
@@ -281,6 +268,20 @@ footer {
   margin: 20px;
   width: 50%;
   display: flex;
+}
+@media screen and (max-width: 768px) {
+  .aboutPg,
+  .twoChickens {
+    position: static;
+    float: none;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  .twoChickens {
+    margin-top: 20px;
+  }
 }
 /* Dropdown Menu Styling */
 
@@ -523,16 +524,37 @@ footer {
 
 .txt-img-container {
   display: flex;
-  gap: 15px;
+  
+  justify-content: space-between;
+  gap: 20px; 
+}
+
+.txt-img-container p {
+  width: 60vw; 
 }
 
 .eggs-pic {
-  height: 215px;
-  width: 230px;
-  object-fit: cover;
-  flex-shrink: 0;
-  margin-top: 20px;
+  width: 40%;
+  max-width: 300px;
 }
+
+@media screen and (max-width: 768px) {
+  .txt-img-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .txt-img-container p {
+    width: 90%;
+  }
+
+  .eggs-pic {
+    width: 80%;
+    max-width: 250px;
+    margin-top: 10px; 
+  }
+}
+
 
 .accountDetails {
   margin: auto;
