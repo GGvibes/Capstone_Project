@@ -134,14 +134,23 @@ footer {
 
 .aboutPg {
   width: 38%;
-  display: absolute;
+  position: relative; 
   left: 0;
 }
 
-.aboutTitle {
-  color: rgb(129, 128, 128);
-  font-weight: 400;
+
+@media screen and (max-width: 768px) {
+  .aboutPg {
+    width: 100%; 
+    text-align: center; 
+  }
+
+  .aboutPage {
+    margin-left: 0; 
+    padding: 0 20px; 
+  }
 }
+
 /* Main Page Styling */
 .title {
   font-size: 6vh;
@@ -239,7 +248,18 @@ footer {
   float: right;
   width: 50vw;
 }
+@media screen and (max-width: 768px) {
+  .cowPgMain,
+  .cowsPicMain {
+    float: none; /* Remove floating */
+    width: 100%; /* Make them take full width */
+    text-align: center; /* Optional: Center align text */
+  }
 
+  .cowsPicMain {
+    margin-top: 20px; /* Add spacing between elements */
+  }
+}
 .twoChickens {
   position: absolute;
   right: 0;
