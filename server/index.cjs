@@ -9,8 +9,20 @@ const usersRouter = require('./api/users.cjs')
 const animalsRouter = require('./api/animals.cjs')
 const reservationsRouter = require('./api/reservations.cjs')
 
+
+const allowedOrigins = [
+  'https://capstone-project-ct4v.onrender.com',
+  'https://capstone-project-deploy-frontend.onrender.com'
+]
+
 server.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin:function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }))
