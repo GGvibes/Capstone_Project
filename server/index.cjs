@@ -11,8 +11,7 @@ const reservationsRouter = require('./api/reservations.cjs')
 
 
 const allowedOrigins = [
-  'https://capstone-project-ct4v.onrender.com',
-  'https://capstone-project-deploy-frontend.onrender.com'
+  'https://capstone-project-ct4v.onrender.com'
 ]
 
 server.use(cors({
