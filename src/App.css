@@ -141,6 +141,7 @@ footer {
 
 @media screen and (max-width: 768px) {
   .aboutPg {
+    float: none;
     width: 100%; 
     text-align: center; 
   }
