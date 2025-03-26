@@ -250,6 +250,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .aboutPg
   .twoChickens {
     float: none; /* Remove floating */
     width: 100%; /* Make them take full width */
