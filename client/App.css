@@ -250,6 +250,14 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .twoChickens {
+    float: none; /* Remove floating */
+    width: 100%; /* Make them take full width */
+    text-align: center; /* Optional: Center align text */
+  }
+}
+
+@media screen and (max-width: 768px) {
   .cowPgMain,
   .cowsPicMain {
     float: none; /* Remove floating */
