@@ -255,6 +255,9 @@ footer {
     width: 100%; /* Make them take full width */
     text-align: center; /* Optional: Center align text */
   }
+  .twoChickens{
+    margin-top: 20px; /* Add spacing between elements */
+  }
 }
 
 @media screen and (max-width: 768px) {
